@@ -112,6 +112,50 @@ let akunSchema = new mongoose.Schema({
                 default: 0
             },
         },
+        ambang: {
+            create: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            read: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            update: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            delete: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+        },
+        akun: {
+            create: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            read: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            update: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            delete: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+        },
     },
 }, {
     timestamps: true
