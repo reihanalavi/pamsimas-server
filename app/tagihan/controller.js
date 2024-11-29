@@ -407,52 +407,6 @@ module.exports = {
             const { idTagihan } = req.params
             const updatedData = req.body
 
-            if(updatedData.meteranSekarang) {
-                const readTagihan = await tagihanModel.findOne({
-                    idTagihan
-                });
-
-                    // Calculate total
-                const pelanggan = await pelangganModel.findOne({
-                    idMeteran
-                })
-
-                const ambang = await ambangModel.findOne({
-                    dusunRTRW: pelanggan.alamatRumah
-                })
-
-                const meteranHitungan = meteranSekarang - readTagihan.meteranSebelumnya
-                var totalTagihan = meteranHitungan
-
-                let factorTotalTagihan = 0
-                let biayaAdmin = 0
-
-                // Logic penentuan harga
-                if(pelanggan.jenisMeteran) {
-                    if(pelanggan.jenisMeteran == 'Pribadi') {
-                        if(meteranHitungan < ambang.ambangMinimum.meteranPribadi) {
-                            totalTagihan = ambang.ambangMinimum.meteranPribadi
-                        }
-                        factorTotalTagihan = ambang.hargaPerKubik.meteranPribadi
-                        biayaAdmin = ambang.biayaAdmin.meteranPribadi
-                    } else {
-                        if(meteranHitungan < ambang.ambangMinimum.meteranUsaha) {
-                            totalTagihan = ambang.ambangMinimum.meteranUsaha
-                        }
-                        factorTotalTagihan = ambang.hargaPerKubik.meteranUsaha
-                        biayaAdmin = ambang.biayaAdmin.meteranUsaha
-                    }
-                } else {
-                    if(meteranHitungan < ambang.ambangMinimum.meteranPribadi) {
-                        totalTagihan = ambang.ambangMinimum.meteranPribadi
-                    }
-                    factorTotalTagihan = ambang.hargaPerKubik.meteranPribadi
-                    biayaAdmin = ambang.biayaAdmin.meteranPribadi
-                }
-
-                updatedData.totalTagihan = (totalTagihan * 1000).toString()
-            }
-
             const tagihan = await tagihanModel.updateOne({
                 idTagihan
             }, {
