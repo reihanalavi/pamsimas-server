@@ -8,7 +8,7 @@ const { pengaduan, createpengaduan, pengaduanByIdMeteran, pengaduanById, updatep
 
 router.get('/pengaduan', pengaduan)
 router.post('/pengaduan', createpengaduan)
-router.get('/pengaduan/:idPengaduan', pengaduanByIdMeteran)
+router.get('/pengaduan/:idMeteran', pengaduanByIdMeteran)
 router.get('/pengaduan/:idPengaduan/detail', pengaduanById)
 router.put('/pengaduan/:idPengaduan/detail', updatepengaduanById)
 router.delete('/pengaduan/:idPengaduan', deletepengaduanById)
